@@ -30,9 +30,6 @@ on:
         description: 'KERNEL_PATH'
         required: true
         default: 'kernel/xiaomi/dandelion'
-      KERNEL_TREE_BRANCH:
-        description: 'KERNEL_TREE_BRANCH'
-        required: true
       VENDOR_TREE_URL:
         description: 'VENDOR_TREE_URL'
         required: true
@@ -40,9 +37,6 @@ on:
         description: 'VENDOR_PATH'
         required: true
         default: 'vendor/xiaomi/dandelion'
-      VENDOR_TREE_BRANCH:
-        description: 'VENDOR_TREE_BRANCH'
-        required: true
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
@@ -132,8 +126,8 @@ jobs:
 
     - name: Clone kernel and vendor trees
       run: |
-        git clone ${{ github.event.inputs.KERNEL_TREE_URL }} -b ${{ github.event.inputs.KERNEL_TREE_BRANCH }} ./${{ github.event.inputs.KERNEL_PATH }}
-        git clone ${{ github.event.inputs.VENDOR_TREE_URL }} -b ${{ github.event.inputs.VENDOR_TREE_BRANCH }} ./${{ github.event.inputs.VENDOR_PATH }}
+        git clone ${{ github.event.inputs.KERNEL_TREE_URL }} ./${{ github.event.inputs.KERNEL_PATH }}
+        git clone ${{ github.event.inputs.VENDOR_TREE_URL }} ./${{ github.event.inputs.VENDOR_PATH }}
       working-directory: ${{ steps.pwd.outputs.workspace-folder }}
 
     - name: Set Swap Space
